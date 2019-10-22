@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.4.6" %}
+{% set version = "2.4.7" %}
 {% set revision = "1" %}
 
 package:
@@ -8,14 +8,7 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}-{{ revision }}.tar.gz
-  sha256: ea4421061a7b9c454f2e088f68bfdbbcefab80ce81cafc70ee6c7742b1439591
-  patches:
-    ########################################################################
-    # Patch to allow selection of static or dynamic CUDA runtime library.  #
-    #                                                                      #
-    # xref: https://github.com/NVIDIA/nccl/pull/220                        #
-    ########################################################################
-    - PR_220.patch
+  sha256: 451c8a20743947e0f6b1385c87f17685a86c0c0a01ecc2c80e50bd472965b157
 
 build:
   number: 0
