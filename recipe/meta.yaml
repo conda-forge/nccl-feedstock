@@ -9,6 +9,13 @@ package:
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}-{{ revision }}.tar.gz
   sha256: e2260da448ebbebe437f74768a346d28c74eabdb92e372a3dc6652a626318924
+  patches:
+    #########################################################
+    # Only uses `SO_REUSEPORT` if defined at compile time.  #
+    #                                                       #
+    # xref: https://github.com/NVIDIA/nccl/commit/7f2b337   #
+    #########################################################
+    - commit_7f2b337.patch
 
 build:
   number: 0
