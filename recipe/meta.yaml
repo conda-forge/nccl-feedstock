@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.4.8" %}
+{% set version = "2.5.6" %}
 {% set revision = "1" %}
 
 package:
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}-{{ revision }}.tar.gz
-  sha256: e2260da448ebbebe437f74768a346d28c74eabdb92e372a3dc6652a626318924
+  sha256: 38a37d98be11f43232b988719226866b407f08b9666dcaf345796bd8f354ef54
 
 build:
-  number: 1
+  number: 0
   skip: true  # [(not linux64) or (cuda_compiler_version == "None")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
