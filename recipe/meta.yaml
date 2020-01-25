@@ -1,13 +1,12 @@
 {% set name = "nccl" %}
-{% set version = "2.5.6" %}
-{% set revision = "1" %}
+{% set version = "2.5.6-1" %}
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}.{{ revision }}
+  version: {{ version|replace("-", ".") }}
 
 source:
-  url: https://github.com/NVIDIA/nccl/archive/v{{ version }}-{{ revision }}.tar.gz
+  url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
   sha256: 38a37d98be11f43232b988719226866b407f08b9666dcaf345796bd8f354ef54
 
 build:
