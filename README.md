@@ -5,7 +5,7 @@ Home: https://developer.nvidia.com/nccl
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: Optimized primitives for collective multi-GPU communication
 
