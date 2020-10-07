@@ -10,7 +10,7 @@ source:
   sha256: fa2bec307270f30fcf6280a85f24ea8801e0ce3b3027937c7325260a890b07e0
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(not linux64) or (cuda_compiler_version == "None")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
