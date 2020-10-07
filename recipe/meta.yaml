@@ -18,7 +18,7 @@ source:
     - PR_220.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(not linux64) or (cuda_compiler_version == "None")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
