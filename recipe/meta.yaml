@@ -15,6 +15,9 @@ build:
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
     - {{ pin_subpackage(name, max_pin="x") }}
+  script_env:
+    # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
+    - CUDA_HOME  # [ppc64le]
 
 requirements:
   build:
