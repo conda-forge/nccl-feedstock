@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [(not linux) or (cuda_compiler_version == "None")]
+  skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
     - {{ pin_subpackage(name, max_pin="x") }}
