@@ -1,0 +1,23 @@
+From 30ca3fcacf8a73c48d7b8f7aaa54ae8bff89e884 Mon Sep 17 00:00:00 2001
+From: John Bachan <jbachan@nvidia.com>
+Date: Thu, 23 Sep 2021 09:52:42 -0700
+Subject: [PATCH] Fix compilation failure in "src/enqueue.cc" on older GCC
+ because of missing `#include <cstring>`.
+
+---
+ src/enqueue.cc | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/enqueue.cc b/src/enqueue.cc
+index e863b822f..4deac1898 100644
+--- a/src/enqueue.cc
++++ b/src/enqueue.cc
+@@ -10,6 +10,8 @@
+ #include "gdrwrap.h"
+ #include "bootstrap.h"
+ 
++#include <cstring> // std::memcpy
++
+ // Only generate inline kernels for LL
+ #define NCCL_FUNC5(func, algo, devredop, dtype) \
+   (void*)NCCL_KERN_NAME(func, algo, LL, devredop, dtype), \
