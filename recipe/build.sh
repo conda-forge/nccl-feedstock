@@ -10,5 +10,5 @@ if [[ $target_platform == linux-aarch64 ]]; then
                          -gencode=arch=compute_80,code=compute_80"
 fi
 
-make -j${CPU_COUNT} src.lib CUDA_HOME="${CUDA_HOME}" CUDARTLIB="cudart"
+make -j${CPU_COUNT} src.lib CUDA_HOME="${CUDA_HOME}" CUDARTLIB="cudart" NVCC_GENCODE=$NVCC_GENCODE
 make install PREFIX="${PREFIX}"
