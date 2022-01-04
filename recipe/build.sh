@@ -4,7 +4,6 @@
 if [[ $target_platform == linux-aarch64 ]]; then
     # it takes too much time to compile, so we reduce the supported archs on aarch64
     export NVCC_GENCODE="-gencode=arch=compute_60,code=sm_60 \
-                         -gencode=arch=compute_61,code=sm_61 \
                          -gencode=arch=compute_70,code=sm_70 \
                          -gencode=arch=compute_80,code=sm_80 \
                          -gencode=arch=compute_80,code=compute_80"
