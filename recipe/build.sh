@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if [[ $target_platform == linux-aarch64 ]]; then
+if [[ $target_platform == linux-aarch64 || $target_platform == linux-ppc64le ]]; then
     # it takes too much time to compile, so we reduce the supported archs on aarch64
     export NVCC_GENCODE="-gencode=arch=compute_60,code=[compute_60,sm_60] \
                          -gencode=arch=compute_70,code=[compute_70,sm_70] \
