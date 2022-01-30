@@ -15,7 +15,7 @@ source:
     - 30ca3fcacf.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
