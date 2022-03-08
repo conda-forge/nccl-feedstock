@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.11.4-1" %}
+{% set version = "2.12.7-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,10 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: db4e9a0277a64f9a31ea9b5eea22e63f10faaed36dded4587bbc8a0d8eceed10
-  patches:
-    # Fixes `memcpy` issue on older GCC's
-    #
-    # xref: https://github.com/NVIDIA/nccl/commit/30ca3fcacf8a73c48d7b8f7aaa54ae8bff89e884
-    - 30ca3fcacf.patch
+  sha256: 928d02e61637128f53320a89088c9c2e597fe9d25548dfaf06238bf5a87420fd
 
 build:
-  number: 2
+  number: 0
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
