@@ -8,11 +8,6 @@ package:
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
   sha256: 928d02e61637128f53320a89088c9c2e597fe9d25548dfaf06238bf5a87420fd
-  patches:
-    # Fixes `memcpy` issue on older GCC's
-    #
-    # xref: https://github.com/NVIDIA/nccl/commit/30ca3fcacf8a73c48d7b8f7aaa54ae8bff89e884
-    - 30ca3fcacf.patch
 
 build:
   number: 0
