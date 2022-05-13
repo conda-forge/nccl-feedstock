@@ -12,3 +12,6 @@ else
 fi
 
 make install PREFIX="${PREFIX}"
+
+# Delete static library
+rm "${PREFIX}/lib/libnccl_static.a"
