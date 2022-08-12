@@ -11,4 +11,3 @@ github:
   tooling_branch_name: main
 bot:
   automerge: true
-idle_timeout_minutes: 60
