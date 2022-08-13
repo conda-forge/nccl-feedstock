@@ -5,10 +5,9 @@ os_version:
   linux_ppc64le: cos7
 provider:
   linux_ppc64le: azure
-  linux_aarch64: default
+  linux_aarch64: azure
 github:
   branch_name: main
   tooling_branch_name: main
 bot:
   automerge: true
-idle_timeout_minutes: 60
