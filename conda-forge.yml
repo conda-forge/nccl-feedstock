@@ -11,3 +11,5 @@ github:
   tooling_branch_name: main
 bot:
   automerge: true
+conda_build:
+  pkg_format: '2'
