@@ -1,0 +1,24 @@
+From d848f4c66906025a7e09744f4c311d6e640de5f9 Mon Sep 17 00:00:00 2001
+From: Peter Andreas Entschev <peter@entschev.com>
+Date: Thu, 13 Apr 2023 06:43:18 -0700
+Subject: [PATCH] Remove possibly buggy TRACE_CALL
+
+---
+ src/enqueue.cc | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/enqueue.cc b/src/enqueue.cc
+index 85f2ac9..22716cc 100644
+--- a/src/enqueue.cc
++++ b/src/enqueue.cc
+@@ -1566,7 +1566,6 @@ ncclResult_t ncclEnqueueCheck(struct ncclInfo* info) {
+   INFO(NCCL_COLL,"%s: opCount %lx sendbuff %p recvbuff %p count %zi datatype %d op %d root %d comm %p [nranks=%d] stream %p",
+         info->opName, info->comm->opCount, info->sendbuff, info->recvbuff, info->count,
+         info->datatype, info->op, info->root, info->comm, info->comm->nRanks, info->stream);
+-  TRACE_CALL("nccl%s(%" PRIx64 ",%" PRIx64 ",%zi,%d,%d,%d,%p,%p)", info->opName, reinterpret_cast<int64_t>(info->sendbuff), reinterpret_cast<int64_t>(info->recvbuff), info->count, info->datatype, info->op, info->root, info->comm, info->stream);
+
+   NCCLCHECKGOTO(taskAppend(info->comm, info), ret, fail);
+
+--
+2.17.1
+
