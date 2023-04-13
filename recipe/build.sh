@@ -6,9 +6,9 @@ if [[ $target_platform == linux-aarch64 || ($target_platform == linux-ppc64le &&
     export NVCC_GENCODE="-gencode=arch=compute_60,code=[compute_60,sm_60] \
                          -gencode=arch=compute_70,code=[compute_70,sm_70] \
                          -gencode=arch=compute_80,code=[compute_80,sm_80]"
-    make -j${CPU_COUNT} src.lib CUDA_HOME="${CUDA_HOME}" CUDARTLIB="cudart_static" NVCC_GENCODE="$NVCC_GENCODE"
+    make -j${CPU_COUNT} src.lib CUDA_HOME="${PREFIX}" CUDARTLIB="cudart_static" NVCC_GENCODE="$NVCC_GENCODE"
 else
-    make -j${CPU_COUNT} src.lib CUDA_HOME="${CUDA_HOME}" CUDARTLIB="cudart_static"
+    make -j${CPU_COUNT} src.lib CUDA_HOME="${PREFIX}" CUDARTLIB="cudart_static"
 fi
 
 make install PREFIX="${PREFIX}"
