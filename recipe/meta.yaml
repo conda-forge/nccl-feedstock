@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.15.5-1" %}
+{% set version = "2.17.1-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: f4ac3c74d469c9cd718f82e1477759785db9b9f8cc9d9ecc103485805b8394a3
+  sha256: 1311a6fd7cd44ad6d4523ba03065ce694605843fd30a5c0f77aa3d911abe706d
 
 build:
   number: 0
