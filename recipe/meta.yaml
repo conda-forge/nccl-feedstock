@@ -10,14 +10,11 @@ source:
   sha256: f4ac3c74d469c9cd718f82e1477759785db9b9f8cc9d9ecc103485805b8394a3
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
     - {{ pin_subpackage(name, max_pin="x") }}
-  script_env:
-    # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
-    - CUDA_HOME  # [ppc64le or aarch64]
 
 requirements:
   build:
@@ -25,6 +22,8 @@ requirements:
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - make
+    - pkg-config
+    - gnuconfig
 
 test:
   commands:
