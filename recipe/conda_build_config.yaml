@@ -16,7 +16,3 @@ docker_image:
   - quay.io/condaforge/linux-anvil-cos7-x86_64  # [linux and x86_64]
   - quay.io/condaforge/linux-anvil-aarch64      # [linux and aarch64]
   - quay.io/condaforge/linux-anvil-ppc64le      # [linux and ppc64le]
-channel_sources:
-  - nvidia,conda-forge
-channel_targets:
-  - nvidia main
