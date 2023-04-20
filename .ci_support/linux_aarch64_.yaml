@@ -9,9 +9,9 @@ cdt_arch:
 cdt_name:
 - cos7
 channel_sources:
-- nvidia,conda-forge
+- conda-forge
 channel_targets:
-- nvidia main
+- conda-forge main
 cuda_compiler_version:
 - '12.0'
 cxx_compiler:
