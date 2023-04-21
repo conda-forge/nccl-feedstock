@@ -10,7 +10,6 @@ source:
   sha256: 1311a6fd7cd44ad6d4523ba03065ce694605843fd30a5c0f77aa3d911abe706d
   patches:
     - remove-trace-call.patch
-    # - makefile-debug.patch
 
 build:
   number: 0
