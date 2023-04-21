@@ -23,11 +23,6 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
         SHORT_CONFIG: linux_64_c_compiler_version10cuda_c_h04e8744819
-      linux_64_c_compiler_version7cuda_compiler_version10.2cxx_compiler_version7:
-        CONFIG: linux_64_c_compiler_version7cuda_compiler_version10.2cxx_compiler_version7
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-cuda:10.2
-        SHORT_CONFIG: linux_64_c_compiler_version7cuda_co_h7972871b7a
       linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9:
         CONFIG: linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9
         UPLOAD_PACKAGES: 'True'
