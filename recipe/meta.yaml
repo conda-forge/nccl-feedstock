@@ -22,8 +22,6 @@ requirements:
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - make
-    - pkg-config
-    - gnuconfig
 
 test:
   commands:
