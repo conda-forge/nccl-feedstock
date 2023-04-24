@@ -27,26 +27,6 @@ matrix:
       arch: arm64
       dist: focal
 
-    - env: CONFIG=linux_ppc64le_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10 UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=quay.io/condaforge/linux-anvil-ppc64le-cuda:11.2
-      os: linux
-      arch: ppc64le
-      dist: focal
-
-    - env: CONFIG=linux_ppc64le_c_compiler_version10cuda_compiler_version12.0cxx_compiler_version10 UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=quay.io/condaforge/linux-anvil-ppc64le
-      os: linux
-      arch: ppc64le
-      dist: focal
-
-    - env: CONFIG=linux_ppc64le_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9 UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=quay.io/condaforge/linux-anvil-ppc64le-cuda:11.0
-      os: linux
-      arch: ppc64le
-      dist: focal
-
-    - env: CONFIG=linux_ppc64le_c_compiler_version9cuda_compiler_version11.1cxx_compiler_version9 UPLOAD_PACKAGES=True PLATFORM=linux-ppc64le DOCKER_IMAGE=quay.io/condaforge/linux-anvil-ppc64le-cuda:11.1
-      os: linux
-      arch: ppc64le
-      dist: focal
-
 script:
   - export CI=travis
   - export GIT_BRANCH="$TRAVIS_BRANCH"
