@@ -2,9 +2,7 @@ conda_forge_output_validation: true
 os_version:
   linux_64: cos6
   linux_aarch64: cos7
-  linux_ppc64le: cos7
 provider:
-  linux_ppc64le: default
   linux_aarch64: default
 github:
   branch_name: main
