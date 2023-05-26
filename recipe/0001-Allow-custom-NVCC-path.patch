@@ -1,0 +1,25 @@
+From bb149b1811ad60c5426f533f2eaaa3805c364255 Mon Sep 17 00:00:00 2001
+From: Peter Andreas Entschev <peter@entschev.com>
+Date: Fri, 26 May 2023 13:25:10 -0700
+Subject: [PATCH] Allow custom NVCC path
+
+---
+ makefiles/common.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/makefiles/common.mk b/makefiles/common.mk
+index 35d1826..abdc773 100644
+--- a/makefiles/common.mk
++++ b/makefiles/common.mk
+@@ -13,7 +13,7 @@ TRACE ?= 0
+ PROFAPI ?= 1
+ NVTX ?= 1
+ 
+-NVCC = $(CUDA_HOME)/bin/nvcc
++NVCC ?= $(CUDA_HOME)/bin/nvcc
+ 
+ CUDA_LIB ?= $(CUDA_HOME)/lib64
+ CUDA_INC ?= $(CUDA_HOME)/include
+-- 
+2.40.1
+

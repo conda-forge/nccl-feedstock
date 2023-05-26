@@ -3,7 +3,7 @@
 EXTRA_ARGS=""
 
 if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
-  EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=${CUDA_PATH}"
+  EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=${PREFIX} NVCC=${BUILD_PREFIX}/bin/nvcc"
 
   [[ "${target_platform}" == "linux-64" ]] && targetsDir="targets/x86_64-linux"
   [[ "${target_platform}" == "linux-ppc64le" ]] && targetsDir="targets/ppc64le-linux"
