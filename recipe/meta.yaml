@@ -24,9 +24,6 @@ requirements:
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - make
-  host:
-    - {{ compiler("c") }}
-    - {{ compiler("cxx") }}
 
 test:
   commands:
