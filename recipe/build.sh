@@ -3,9 +3,9 @@
 EXTRA_ARGS=""
 
 if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
-  EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=${PREFIX} NVCC=${BUILD_PREFIX}/bin/nvcc"
+  EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=\"${PREFIX}\" NVCC=\"${BUILD_PREFIX}/bin/nvcc\""
 elif [[ "${cuda_compiler_version}" != "None" ]]; then
-  EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=${CUDA_PATH}"
+  EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=\"${CUDA_PATH}\""
 fi
 
 if [[ $target_platform == linux-aarch64 || ($target_platform == linux-ppc64le && $cuda_compiler_version != "10.2")]]; then
