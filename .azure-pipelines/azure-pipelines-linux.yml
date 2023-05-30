@@ -28,6 +28,16 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.0
         SHORT_CONFIG: linux_64_c_compiler_version9cuda_co_hd04c7a2c1a
+      linux_aarch64_c_compiler_version10cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version10:
+        CONFIG: linux_aarch64_c_compiler_version10cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version10
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
+        SHORT_CONFIG: linux_aarch64_c_compiler_version10c_h429f624afe
+      linux_ppc64le_c_compiler_version10cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version10:
+        CONFIG: linux_ppc64le_c_compiler_version10cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version10
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
+        SHORT_CONFIG: linux_ppc64le_c_compiler_version10c_he10baadd76
   timeoutInMinutes: 360
 
   steps:
