@@ -16,7 +16,8 @@ if [[ $target_platform == linux-aarch64 || ($target_platform == linux-ppc64le &&
     EXTRA_ARGS="${EXTRA_ARGS} NVCC_GENCODE=\"${NVCC_GENCODE}\""
 fi
 
-make -j${CPU_COUNT} src.lib CUDARTLIB="cudart_static" ${EXTRA_ARGS}
+# `eval` is needed here for proper `${NVCC_GENCODE}` expansion
+eval make -j${CPU_COUNT} src.lib CUDARTLIB="cudart_static" ${EXTRA_ARGS}
 
 make install PREFIX="${PREFIX}"
 
