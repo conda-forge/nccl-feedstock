@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EXTRA_ARGS=""
+EXTRA_ARGS="CUDARTLIB=\"cudart_static\""
 
 if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
   EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=\"${PREFIX}\" NVCC=\"${BUILD_PREFIX}/bin/nvcc\""
@@ -8,19 +8,19 @@ elif [[ "${cuda_compiler_version}" != "None" ]]; then
   EXTRA_ARGS="${EXTRA_ARGS} CUDA_HOME=\"${CUDA_PATH}\""
 fi
 
-if [[ $target_platform == linux-aarch64 || ($target_platform == linux-ppc64le && $cuda_compiler_version != "10.2")]]; then
-    # it takes too much time to compile, so we reduce the supported archs on aarch64
-    NVCC_GENCODE="-gencode=arch=compute_60,code=[compute_60,sm_60] \
-                  -gencode=arch=compute_70,code=[compute_70,sm_70] \
-                  -gencode=arch=compute_80,code=[compute_80,sm_80]"
-    if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
-        NVCC_GENCODE="${NVCC_GENCODE} -gencode=arch=compute_90,code=[compute_90,sm_90]"
+if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
+    if [[ $target_platform == linux-aarch64 ]]; then
+        EXTRA_ARGS="${EXTRA_ARGS} CUDA_LIB=\"${CUDA_HOME}/targets/sbsa-linux/lib/\""
+    elif [[ $target_platform == linux-ppc64le ]]; then
+        EXTRA_ARGS="${EXTRA_ARGS} CUDA_LIB=\"${CUDA_HOME}/targets/ppc64le-linux/lib/\""
+    else
+        echo "not supported"
+        exit -1
     fi
-    EXTRA_ARGS="${EXTRA_ARGS} NVCC_GENCODE=\"${NVCC_GENCODE}\""
 fi
 
-# `eval` is needed here for proper `${NVCC_GENCODE}` expansion
-eval make -j${CPU_COUNT} src.lib CUDARTLIB="cudart_static" ${EXTRA_ARGS}
+# `eval` is needed here for proper `${...}` expansion
+eval make -j${CPU_COUNT} src.lib ${EXTRA_ARGS}
 
 make install PREFIX="${PREFIX}"
 
