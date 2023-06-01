@@ -13,7 +13,7 @@ source:
     - 0001-Allow-custom-NVCC-path.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "10.2")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
