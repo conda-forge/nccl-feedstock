@@ -1,15 +1,20 @@
 #!/bin/bash
 
 
-if [[ $target_platform == linux-aarch64 || ($target_platform == linux-ppc64le && $cuda_compiler_version != "10.2")]]; then
-    # it takes too much time to compile, so we reduce the supported archs on aarch64
-    export NVCC_GENCODE="-gencode=arch=compute_60,code=[compute_60,sm_60] \
-                         -gencode=arch=compute_70,code=[compute_70,sm_70] \
-                         -gencode=arch=compute_80,code=[compute_80,sm_80]"
-    make -j${CPU_COUNT} src.lib CUDA_HOME="${CUDA_HOME}" CUDARTLIB="cudart_static" NVCC_GENCODE="$NVCC_GENCODE"
-else
-    make -j${CPU_COUNT} src.lib CUDA_HOME="${CUDA_HOME}" CUDARTLIB="cudart_static"
+EXTRA_ARGS="CUDA_HOME=\"${CUDA_HOME}\" CUDARTLIB=\"cudart_static\""
+if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
+    if [[ $target_platform == linux-aarch64 ]]; then
+        EXTRA_ARGS="${EXTRA_ARGS} CUDA_LIB=\"${CUDA_HOME}/targets/sbsa-linux/lib/\""
+    elif [[ $target_platform == linux-ppc64le ]]; then
+        EXTRA_ARGS="${EXTRA_ARGS} CUDA_LIB=\"${CUDA_HOME}/targets/ppc64le-linux/lib/\""
+    else
+        echo "not supported"
+        exit -1
+    fi
 fi
+
+# `eval` is needed here for proper `${...}` expansion
+eval make -j${CPU_COUNT} src.lib ${EXTRA_ARGS}
 
 make install PREFIX="${PREFIX}"
 
