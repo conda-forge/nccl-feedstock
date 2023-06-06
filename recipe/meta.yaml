@@ -13,8 +13,11 @@ source:
     - 0001-Allow-custom-NVCC-path.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "10.2")]
+  ignore_run_exports_from:
+    # Ignore `cudatoolkit` dependency in CUDA 11 builds
+    - {{ compiler("cuda") }}  # [(cuda_compiler_version or "").startswith("11")]
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
     - {{ pin_subpackage(name, max_pin="x") }}
@@ -25,6 +28,10 @@ requirements:
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - make
+  host:
+    - cuda-version ={{ cuda_compiler_version }}          # [(cuda_compiler_version or "").startswith("11")]
+  run:
+    - {{ pin_compatible("cuda-version", max_pin="x") }}  # [(cuda_compiler_version or "").startswith("11")]
 
 test:
   commands:
