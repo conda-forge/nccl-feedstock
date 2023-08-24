@@ -1,19 +1,19 @@
+bot:
+  automerge: true
+build_platform:
+  linux_aarch64: linux_64
+  linux_ppc64le: linux_64
+conda_build:
+  pkg_format: '2'
 conda_forge_output_validation: true
+github:
+  branch_name: main
+  tooling_branch_name: main
 os_version:
   linux_64: cos6
   linux_aarch64: cos7
   linux_ppc64le: cos7
-build_platform:
-   linux_ppc64le: linux_64
-   linux_aarch64: linux_64
 provider:
-  linux_ppc64le: azure
   linux_aarch64: azure
-github:
-  branch_name: main
-  tooling_branch_name: main
-bot:
-  automerge: true
-conda_build:
-  pkg_format: '2'
+  linux_ppc64le: azure
 test: native_and_emulated
