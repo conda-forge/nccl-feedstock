@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.20.5-1" %}
+{% set version = "2.21.5-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: d11ad65c1df3cbe4447eaddceec71569f5c0497e27b3b8369cf79f18d2b2ad8c
+  sha256: 1923596984d85e310b5b6c52b2c72a1b93da57218f2bc5a5c7ac3d59297a3303
   patches:
     # Upstreaming w/PR: https://github.com/NVIDIA/nccl/pull/854
     - 0001-Allow-custom-NVCC-path.patch
