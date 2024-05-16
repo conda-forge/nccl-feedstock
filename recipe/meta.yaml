@@ -9,8 +9,8 @@ source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
   sha256: 1923596984d85e310b5b6c52b2c72a1b93da57218f2bc5a5c7ac3d59297a3303
   patches:
-    # Upstreaming w/PR: https://github.com/NVIDIA/nccl/pull/854
-    - 0001-Allow-custom-NVCC-path.patch
+    # This isn't needed; setting CUDA_HOME sets NVCC correctly
+    #- 0001-Allow-custom-NVCC-path.patch
 
 build:
   number: 0
