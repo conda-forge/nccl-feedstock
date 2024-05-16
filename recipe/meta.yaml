@@ -11,6 +11,7 @@ source:
   patches:
     # This isn't needed; setting CUDA_HOME sets NVCC correctly
     #- 0001-Allow-custom-NVCC-path.patch
+    - 0002-use-conda-ar-not-system.patch
 
 build:
   number: 0
@@ -28,6 +29,7 @@ requirements:
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - make
+    - patch
   host:
     - cuda-version ={{ cuda_compiler_version }}          # [(cuda_compiler_version or "").startswith("11")]
   run:
