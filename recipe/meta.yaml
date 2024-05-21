@@ -14,7 +14,7 @@ source:
     - 0002-use-conda-ar-not-system.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "10.2")]
   ignore_run_exports_from:
     # Ignore `cudatoolkit` dependency in CUDA 11 builds
