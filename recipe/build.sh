@@ -17,7 +17,7 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == "1" ]]; then
     fi
 fi
 
-make -j${CPU_COUNT} src.lib
+make -j${CPU_COUNT} src.lib --print-data-base
 
 make install PREFIX="${PREFIX}"
 
