@@ -30,7 +30,6 @@ requirements:
     - {{ compiler("cuda") }}
     - {{ stdlib("c") }}
     - make
-    - patch
   host:
     - cuda-version ={{ cuda_compiler_version }}          # [(cuda_compiler_version or "").startswith("11")]
   run:
