@@ -9,11 +9,12 @@ source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
   sha256: 1923596984d85e310b5b6c52b2c72a1b93da57218f2bc5a5c7ac3d59297a3303
   patches:
-    # Upstreaming w/PR: https://github.com/NVIDIA/nccl/pull/854
-    - 0001-Allow-custom-NVCC-path.patch
+    # This isn't needed; setting CUDA_HOME sets NVCC correctly
+    #- 0001-Allow-custom-NVCC-path.patch
+    - 0002-use-conda-ar-not-system.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "10.2")]
   ignore_run_exports_from:
     # Ignore `cudatoolkit` dependency in CUDA 11 builds
@@ -27,6 +28,7 @@ requirements:
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
+    - {{ stdlib("c") }}
     - make
   host:
     - cuda-version ={{ cuda_compiler_version }}          # [(cuda_compiler_version or "").startswith("11")]
