@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.22.3-1" %}
+{% set version = "2.23.4-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: 45151629a9494460e73375281e8b0fe379141528879301899ece9b776faca024
+  sha256: c3c90ab2bffb99927700789fe6c1f8f620c8f29f4ed545d48e3e09f51931a0e5
   patches:
     # Upstreaming w/PR: https://github.com/NVIDIA/nccl/pull/854
     - 0001-Allow-custom-NVCC-path.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "10.2")]
   ignore_run_exports_from:
     # Ignore `cudatoolkit` dependency in CUDA 11 builds
