@@ -1,0 +1,16 @@
+This fixes an issue where the build fails on linux-aarch64, because a system ar
+can't be found. Presumably it's using the system ar on other platforms, too,
+which isn't ideal.
+Index: nccl/src/Makefile
+===================================================================
+--- nccl.orig/src/Makefile	2024-05-16 16:58:16.522514975 -0500
++++ nccl/src/Makefile	2024-05-16 17:47:45.959416166 -0500
+@@ -83,7 +83,7 @@
+ $(LIBDIR)/$(STATICLIBTARGET): $(LIBOBJ) $(DEVMANIFEST)
+ 	@printf "Archiving  %-35s > %s\n" $(STATICLIBTARGET) $@
+ 	mkdir -p $(LIBDIR)
+-	ar cr $@ $(LIBOBJ) $$(cat $(DEVMANIFEST))
++	$(AR) cr $@ $(LIBOBJ) $$(cat $(DEVMANIFEST))
+ 
+ $(PKGDIR)/nccl.pc : nccl.pc.in
+ 	mkdir -p $(PKGDIR)
