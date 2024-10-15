@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.21.5-1" %}
+{% set version = "2.23.4-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: 1923596984d85e310b5b6c52b2c72a1b93da57218f2bc5a5c7ac3d59297a3303
+  sha256: 6b946b70a9d2d01871842cbd15ec56488d358abe9a0f3767e372fddc3e241ba7
   patches:
     - 0002-use-conda-ar-not-system.patch
 
@@ -24,6 +24,7 @@ build:
 requirements:
   build:
     - {{ compiler("c") }}
+    - {{ stdlib("c") }}
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - {{ stdlib("c") }}
@@ -31,7 +32,8 @@ requirements:
   host:
     - cuda-version ={{ cuda_compiler_version }}          # [(cuda_compiler_version or "").startswith("11")]
   run:
-    - {{ pin_compatible("cuda-version", max_pin="x") }}  # [(cuda_compiler_version or "").startswith("11")]
+    - cuda-version >=12.0,<13.0a0  # [(cuda_compiler_version or "").startswith("12")]
+    - cuda-version >=11.0,<12.0a0  # [(cuda_compiler_version or "").startswith("11")]
 
 test:
   commands:
@@ -58,5 +60,6 @@ about:
 
 extra:
   recipe-maintainers:
+    - conda-forge/cuda
     - jakirkham
     - leofang
