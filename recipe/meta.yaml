@@ -9,7 +9,7 @@ source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
   sha256: 6b946b70a9d2d01871842cbd15ec56488d358abe9a0f3767e372fddc3e241ba7
   patches:
-    - 0002-use-conda-ar-not-system.patch
+    - 0001-use-conda-ar-not-system.patch
 
 build:
   number: 1
@@ -27,7 +27,6 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
-    - {{ stdlib("c") }}
     - make
   host:
     - cuda-version ={{ cuda_compiler_version }}          # [(cuda_compiler_version or "").startswith("11")]
