@@ -3,6 +3,7 @@
 if [[ -z "${CUDA_HOME+x}" ]]; then
   # `$CUDA_HOME` was set for CUDA 11.x and earlier.
   # Must be using CUDA 12.0+. So set to `$BUILD_PREFIX`.
+  # This is needed to find `nvcc` and `cudart`.
   export CUDA_HOME="${BUILD_PREFIX}"
 fi
 
