@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
+if [[ -z "${CUDA_HOME+x}" ]]; then
+  # `$CUDA_HOME` was set for CUDA 11.x and earlier.
+  # Must be using CUDA 12.0+. So set to `$BUILD_PREFIX`.
   export CUDA_HOME="${BUILD_PREFIX}"
-elif [[ "${cuda_compiler_version}" != "None" ]]; then
-  export CUDA_HOME="${CUDA_PATH}"
 fi
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
