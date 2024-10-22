@@ -23,8 +23,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler("c") }}
     - {{ stdlib("c") }}
+    - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - make
