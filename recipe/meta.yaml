@@ -30,7 +30,7 @@ requirements:
     - {{ compiler("cuda") }}
     - make
   host:
-    - cuda-version ={{ cuda_compiler_version }}
+    - cuda-version {{ cuda_compiler_version }}
   run:
     - cuda-version >=12.0,<13.0a0  # [(cuda_compiler_version or "").startswith("12")]
     - cuda-version >=11.0,<12.0a0  # [(cuda_compiler_version or "").startswith("11")]
