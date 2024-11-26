@@ -12,11 +12,12 @@ source:
     - 0001-use-conda-ar-not-system.patch
 
 build:
-  number: 2
-  skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "10.2")]
+  number: 3
+  skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports_from:
-    # Ignore `cudatoolkit` dependency in CUDA 11 builds
-    - {{ compiler("cuda") }}  # [(cuda_compiler_version or "").startswith("11")]
+    # Ignore `cudatoolkit` dependency in CUDA 11 builds as it is unneeded.
+    # Also ignore `cuda-version` constraint in CUDA 12+ as this supports CUDA Enhanced Compatibility.
+    - {{ compiler("cuda") }}
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
     - {{ pin_subpackage(name, max_pin="x") }}
@@ -29,7 +30,7 @@ requirements:
     - {{ compiler("cuda") }}
     - make
   host:
-    - cuda-version ={{ cuda_compiler_version }}          # [(cuda_compiler_version or "").startswith("11")]
+    - cuda-version {{ cuda_compiler_version }}
   run:
     - cuda-version >=12.0,<13.0a0  # [(cuda_compiler_version or "").startswith("12")]
     - cuda-version >=11.0,<12.0a0  # [(cuda_compiler_version or "").startswith("11")]
