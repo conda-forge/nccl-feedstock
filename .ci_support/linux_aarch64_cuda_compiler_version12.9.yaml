@@ -25,10 +25,8 @@ docker_image:
 nccl:
 - '2'
 target_platform:
-- linux-64
+- linux-aarch64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-  - cuda_compiler
   - cuda_compiler_version
-  - docker_image
