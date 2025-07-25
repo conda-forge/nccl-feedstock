@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.27.6-1" %}
+{% set version = "2.27.7-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: be322d358891c48acf34ac23655e7ebdce27bcfa83d67d09483c335d3b5021cc
+  sha256: 98e6262bd55932c51e7c8ffc50cc764f019e4b94a8fd6694d839ae828ec8d128
   patches:
     - 0001-use-conda-ar-not-system.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "12.6")]
   ignore_run_exports_from:
     # Ignore `cudatoolkit` dependency in CUDA 11 builds as it is unneeded.
