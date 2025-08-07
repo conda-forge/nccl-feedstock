@@ -12,8 +12,8 @@ source:
     - 0001-use-conda-ar-not-system.patch
 
 build:
-  number: 0
-  skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None", "12.6")]
+  number: 2
+  skip: true  # [ppc64le or (not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports_from:
     # Ignore `cudatoolkit` dependency in CUDA 11 builds as it is unneeded.
     # Also ignore `cuda-version` constraint in CUDA 12+ as this supports CUDA Enhanced Compatibility.
@@ -33,6 +33,7 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}
   run:
     - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
+    - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
 test:
   commands:
