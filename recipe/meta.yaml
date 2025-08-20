@@ -14,10 +14,9 @@ source:
 build:
   number: 2
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
-  ignore_run_exports_from:
-    # Ignore `cudatoolkit` dependency in CUDA 11 builds as it is unneeded.
-    # Also ignore `cuda-version` constraint in CUDA 12+ as this supports CUDA Enhanced Compatibility.
-    - {{ compiler("cuda") }}
+  ignore_run_exports:
+    # ignore `cuda-version` constraint in CUDA 12+ as this supports CUDA Enhanced Compatibility.
+    - cuda-version
   run_exports:
     # xref: https://github.com/NVIDIA/nccl/issues/218
     - {{ pin_subpackage(name, max_pin="x") }}
@@ -33,8 +32,6 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}
   run:
     - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
-    - arm-variant * {{ arm_variant_type }}  # [aarch64]
-
 test:
   commands:
     - test -f "${PREFIX}/include/nccl.h"
