@@ -32,6 +32,7 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}
   run:
     - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
+
 test:
   commands:
     - test -f "${PREFIX}/include/nccl.h"
