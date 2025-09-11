@@ -4,9 +4,8 @@ __migrator:
   migration_number:
     1
   build_number:
-    0
+    1
   paused: false
-  use_local: true
   override_cbc_keys:
     - cuda_compiler_stub
   check_solvable: false
@@ -27,8 +26,8 @@ __migrator:
     - cuda129
   commit_message: |
     Upgrade to CUDA 13.0
-
-    CUDA 13.0 removed support for architectures before `sm_75`, and renamed `sm_101` to
+    
+    CUDA 13.0 requires architecture `sm_75` or higher, and renamed `sm_101` to
     `sm_110`. To build for these, maintainers will need to modify their existing list of
     specified architectures (e.g. `CMAKE_CUDA_ARCHITECTURES`, `TORCH_CUDA_ARCH_LIST`, etc.)
     for their package.
@@ -41,6 +40,11 @@ __migrator:
     these variables in their build script.
 
     ref: https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#new-features
+
+    > [[!IMPORTANT]]
+    > Remember to update any CUDA 11/12 specific selector syntax in the recipe to include
+    > CUDA 13. For example `# [(cuda_compiler_version or "None").startswith("12")]`
+    > might be replaced with `# [cuda_compiler_version != "None"]`.
 
 cuda_compiler_version:         # [((linux and (x86_64 or aarch64)) or win64) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
   - 13.0                       # [((linux and (x86_64 or aarch64)) or win64) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
