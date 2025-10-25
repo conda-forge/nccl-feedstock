@@ -31,7 +31,8 @@ requirements:
   host:
     - cuda-version {{ cuda_compiler_version }}
   run:
-    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
+    - {{ pin_compatible("cuda-version", lower_bound="12.2a0") }}                    # [(cuda_compiler_version or "").startswith("12")]
+    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}                # [(cuda_compiler_version or "").startswith("13")]
 
 test:
   commands:
