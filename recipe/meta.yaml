@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.28.9-1" %}
+{% set version = "2.29.2-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: f349860336c6b7fb97b22bed9c729142f3531a0e82826c1204d01e44af8b9cb9
+  sha256: 063e20649c4cfa01e789b4dc73514dbb5d73f9518e426823dab53316415e071b
   patches:
     - 0001-use-conda-ar-not-system.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports:
     # ignore `cuda-version` constraint in CUDA 12+ as this supports CUDA Enhanced Compatibility.
