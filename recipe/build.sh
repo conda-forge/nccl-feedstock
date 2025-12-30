@@ -7,6 +7,34 @@ if [[ -z "${CUDA_HOME+x}" ]]; then
   export CUDA_HOME="${BUILD_PREFIX}"
 fi
 
+# Convert CUDAARCHS to NVCC_GENCODE if available
+if [[ -n "${CUDAARCHS}" ]]; then
+    NVCC_GENCODE=""
+    IFS=';' read -ra ARCHS <<< "$CUDAARCHS"
+    for arch_spec in "${ARCHS[@]}"; do
+        # Remove any leading/trailing whitespace
+        arch_spec=$(echo "$arch_spec" | xargs)
+
+        # Parse architecture number and suffix (e.g., "87-real", "101f-virtual")
+        if [[ "$arch_spec" =~ ^([0-9]+)([a-z]*)-(real|virtual)$ ]]; then
+            arch_num="${BASH_REMATCH[1]}"
+            arch_suffix="${BASH_REMATCH[2]}"
+            code_type="${BASH_REMATCH[3]}"
+
+            # Build the full architecture string with suffix if present
+            full_arch="${arch_num}${arch_suffix}"
+
+            if [[ "$code_type" == "real" ]]; then
+                NVCC_GENCODE="${NVCC_GENCODE} -gencode=arch=compute_${full_arch},code=sm_${full_arch}"
+            elif [[ "$code_type" == "virtual" ]]; then
+                NVCC_GENCODE="${NVCC_GENCODE} -gencode=arch=compute_${arch_num},code=compute_${arch_num}"
+            fi
+        fi
+    done
+    # Trim leading space
+    export NVCC_GENCODE="${NVCC_GENCODE# }"
+fi
+
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
     if [[ "${target_platform}" == "linux-aarch64" ]]; then
         if [[ "${arm_variant_type}" == "tegra" ]]; then
