@@ -9,7 +9,11 @@ fi
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
     if [[ "${target_platform}" == "linux-aarch64" ]]; then
-        export CUDA_LIB="${CUDA_HOME}/targets/sbsa-linux/lib/"
+        if [[ "${arm_variant_type}" == "tegra" ]]; then
+            export CUDA_LIB="${CUDA_HOME}/targets/aarch64-linux/lib/"
+        else
+            export CUDA_LIB="${CUDA_HOME}/targets/sbsa-linux/lib/"
+        fi
     elif [[ "${target_platform}" == "linux-ppc64le" ]]; then
         export CUDA_LIB="${CUDA_HOME}/targets/ppc64le-linux/lib/"
     else
