@@ -12,7 +12,7 @@ source:
     - 0001-use-conda-ar-not-system.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports:
     # ignore `cuda-version` constraint in CUDA 12+ as this supports CUDA Enhanced Compatibility.
@@ -27,6 +27,7 @@ requirements:
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
+    - arm-variant * {{ arm_variant_type }}  # [linux and aarch64 and cuda_compiler_version != "None"]
     - make
   host:
     - cuda-version {{ cuda_compiler_version }}
