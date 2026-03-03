@@ -1,5 +1,5 @@
 {% set name = "nccl" %}
-{% set version = "2.29.3-1" %}
+{% set version = "2.29.7-1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/NVIDIA/nccl/archive/v{{ version }}.tar.gz
-  sha256: d1dffc5e9dd059985704f98ff3d8b7e6cf62d20c10a181d427a4e3233f8148f1
+  sha256: e67239212c395bfdb398a7519491840d06fdf6b599c299f97c7ed0109777bba1
   patches:
     - 0001-use-conda-ar-not-system.patch
 
@@ -28,6 +28,9 @@ requirements:
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - arm-variant * {{ arm_variant_type }}  # [linux and aarch64 and cuda_compiler_version != "None"]
+    - cf-nvidia-tools 1  # [linux]
+    - clang 21.*
+    - llvm-tools
     - make
   host:
     - cuda-version {{ cuda_compiler_version }}
@@ -37,7 +40,9 @@ requirements:
 test:
   commands:
     - test -f "${PREFIX}/include/nccl.h"
+    - test -f "${PREFIX}/include/nccl_device_wrapper.h"  # [(cuda_compiler_version or "").startswith("12")]
     - test -f "${PREFIX}/lib/libnccl.so"
+    - test -f "${PREFIX}/lib/libnccl_device.bc"          # [(cuda_compiler_version or "").startswith("12")]
     - test ! -f "${PREFIX}/lib/libnccl_static.a"
 
 about:
