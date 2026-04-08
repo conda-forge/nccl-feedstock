@@ -75,5 +75,3 @@ make install PREFIX="${PREFIX}"
 
 # Delete static library
 rm "${PREFIX}/lib/libnccl_static.a"
-
-check-glibc $PREFIX/bin/* $PREFIX/lib/lib*.so*

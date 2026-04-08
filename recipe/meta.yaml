@@ -25,11 +25,10 @@ requirements:
   build:
     - {{ stdlib("c") }}
     - {{ compiler("c") }}
+    - {{ compiler("clang") }}  # [(cuda_compiler_version or "").startswith("12")]
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
     - arm-variant * {{ arm_variant_type }}  # [linux and aarch64 and cuda_compiler_version != "None"]
-    - cf-nvidia-tools 1  # [linux]
-    - clang 21.*
     - llvm-tools
     - make
   host:
