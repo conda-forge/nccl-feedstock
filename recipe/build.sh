@@ -35,13 +35,6 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
     fi
 fi
 
-# For now, we emit LLVM IR for CUDA 12.x only.
-if [[ "${cuda_compiler_version}" == 12.* ]]; then
-    EMIT_LLVM_IR=1
-else
-    EMIT_LLVM_IR=0
-fi
-
 # NCCL's Makefile assumes a standard system-wide CUDA installation where
 # everything lives under one directory (e.g. /usr/local/cuda/include,
 # /usr/local/cuda/bin/nvcc, etc.). Conda does not install CUDA that way.
@@ -66,7 +59,7 @@ CUDA_INC="$BUILD_PREFIX/$targetsDir/include"
 # build env. Listing it as a build: dependency breaks cross-compilation for linux-aarch64
 touch "$BUILD_PREFIX/$targetsDir/include/curand_mtgp32_kernel.h"
 
-make -j1 pkg.txz.build EMIT_LLVM_IR="$EMIT_LLVM_IR" \
+make -j1 pkg.txz.build EMIT_LLVM_IR=1 \
   CUDA_HOME="$BUILD_PREFIX" \
   CUDA_INC="$CUDA_INC" \
   NVCC="$BUILD_PREFIX/bin/nvcc"
