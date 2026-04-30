@@ -59,7 +59,7 @@ CUDA_INC="$BUILD_PREFIX/$targetsDir/include"
 # build env. Listing it as a build: dependency breaks cross-compilation for linux-aarch64
 touch "$BUILD_PREFIX/$targetsDir/include/curand_mtgp32_kernel.h"
 
-make -j1 pkg.txz.build EMIT_LLVM_IR=1 \
+make -j${CPU_COUNT} pkg.txz.build EMIT_LLVM_IR=1 \
   CUDA_HOME="$BUILD_PREFIX" \
   CUDA_INC="$CUDA_INC" \
   NVCC="$BUILD_PREFIX/bin/nvcc"
