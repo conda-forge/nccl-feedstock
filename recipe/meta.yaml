@@ -40,7 +40,7 @@ requirements:
 test:
   commands:
     - test -f "${PREFIX}/include/nccl.h"
-    - test -f "${PREFIX}/include/nccl_device_wrapper.h"
+    - test -f "${PREFIX}/include/nccl_device.h"
     - test -f "${PREFIX}/lib/libnccl.so"
     - test -f "${PREFIX}/lib/libnccl_device.bc"
     - test ! -f "${PREFIX}/lib/libnccl_static.a"
